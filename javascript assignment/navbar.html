@@ -1,0 +1,127 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>responsive navbar</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: sans-serif;
+    }
+
+    a {
+        text-decoration: none;
+        color: black;
+        /* font-size: 1.2rem; */
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    .nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 20px;
+    }
+
+    .logo {
+        font-size: 1.8rem;
+        color: rgb(5, 5, 116);
+        padding-left: 20px;
+    }
+
+    .lines {
+        padding-right: 20px;
+        cursor: pointer;
+    }
+
+    .lines .line {
+        display: block;
+        width: 40px;
+        height: 5px;
+        margin-bottom: 10px;
+        background-color: black;
+    }
+
+    .nav__tabs {
+        position: fixed;
+        width: 94%;
+        top: 5rem;
+        left: 18px;
+        background-color: rgb(52, 183, 226);
+    }
+
+    .nav__tabs a {
+        display: block;
+        text-align: center;
+        padding: 10px 0;
+    }
+
+    .nav__tabs a:hover {
+        background-color: lightcoral;
+    }
+
+    .hide {
+        display: none;
+    }
+
+    @media screen and (min-width: 600px) {
+        .nav__tabs {
+            display: block;
+            position: static;
+            width: auto;
+            margin-right: 20px;
+            background: none;
+        }
+
+        .nav__tabs a {
+            display: inline-block;
+            padding: 15px 20px;
+        }
+
+        .lines {
+            display: none;
+        }
+    }
+</style>
+
+<body>
+    <header>
+        <nav class="nav">
+            <a href="/" class="logo">logo</a>
+
+            <div class="lines">
+                <span class="line"></span>
+                <span class="line"></span>
+                <span class="line"></span>
+            </div>
+
+            <div class="nav__tabs hide">
+                <a href="#">Home</a>
+                <a href="#">About</a>
+                <a href="#">Products</a>
+                <a href="#">Contacts</a>
+            </div>
+        </nav>
+    </header>
+</body>
+
+<script>
+    const hamburger = document.querySelector('.lines');
+    const navLink = document.querySelector('.nav__tabs');
+
+    hamburger.addEventListener('click', () => {
+        navLink.classList.toggle('hide');
+    });
+</script>
+
+</html>

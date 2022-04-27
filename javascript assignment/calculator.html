@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .container{
+        background-color: lightskyblue;
+        width: fit-content;
+    }
+    .view{
+        display: inline-block;
+        background-color: gainsboro;
+        height: 40px;
+        width: 200px;
+    }
+
+    .btn-1{
+        cursor: pointer;
+        background-color: rgb(254, 254, 104);
+        width: 42px;
+        height: 42px;
+        font-size: 20px;
+        font-weight: bold;
+        border-radius: 10px;
+    }
+
+    .btn-2{
+        cursor: pointer;
+        background-color: aquamarine;
+        width: 42px;
+        height: 42px;
+        font-size: 20px;
+        font-weight: bold;
+        border-radius: 10px;
+    }
+    .btn-3{
+        cursor: pointer;
+        background-color: red;
+        width: 42px;
+        height: 42px;
+        font-size: 20px;
+        font-weight: bold;
+        border-radius: 10px;
+    }
+    .btn-equal{
+        cursor: pointer;
+        display: inline-block;
+        margin: 2px;
+        width: 42px;
+        height: 150px;
+        outline: none;
+        font-size: 20px;
+        font-weight: bold;
+        border-radius: 10px;
+    }
+    .btn-1:hover,.btn-2:hover,.btn-3:hover,.btn-equal:hover{
+        background-color: bisque;
+    }
+
+
+
+
+
+
+</style>
+
+<body>
+    <center>
+
+        <h1>CALCULATOR</h1>
+        <div class="container">
+        <form name="form">
+            <input name="view" class="view">
+        </form>
+        <table>
+
+            <tr>
+                <td> <button type="button" class="btn-1" data-num="*" onclick="insert('*')">x</button></td>
+                <td> <button type="button" class="btn-1" data-num="/" onclick="insert('/')">/</button></td>
+                <td><button type="button" class="btn-1" data-num="-" onclick="insert('-')">-</button></td>
+                <td><button type="button" class="btn-1" data-num="+" onclick="insert('+')">+</button></td>
+                
+            </tr>
+            <!-- grey buttons -->
+            <tr>
+                <td><button type="button" class="btn-2" data-num="0" onclick="insert(0)">0</button></td>
+                
+                
+                <td><button type="button" class="btn-2" data-num="." onclick="insert('.')">.</button></td>
+                
+                <td><button type="button" class="btn-3" onclick="back()">C</button></td>
+                <td><button type="button" class="btn-3" onclick="clean()">AC</button></td>
+            </tr>
+            <tr>
+                <td><button type="button" class="btn-2" data-num="9" onclick="insert(9)">9</button></td>
+                <td><button type="button" class="btn-2" data-num="8" onclick="insert(8)">8</button></td>
+                <td><button type="button" class="btn-2" data-num="7" onclick="insert(7)">7</button></td>
+                <!-- <td rowspan="5"><input class="equalButton" type="button" value="=" onclick=equals()></td> -->
+                <td rowspan="3"><button type="button" class="btn-equal" onclick=equals()>=</button></td>
+
+            </tr>
+
+            <tr>
+                <td><button type="button" class="btn-2" data-num="6" onclick="insert(6)">6</button></td>
+                <td><button type="button" class="btn-2" data-num="5" onclick="insert(5)">5</button></td>
+                <td><button type="button" class="btn-2" data-num="4" onclick="insert(4)">4</button></td>
+            </tr>
+
+            <tr>
+                <td><button type="button" class="btn-2" data-num="3" onclick="insert(3)">3</button></td>
+                <td><button type="button" class="btn-2" data-num="2" onclick="insert(2)">2</button></td>
+                <td><button type="button" class="btn-2" data-num="1" onclick="insert(1)">1</button></td>
+            </tr>
+
+            
+            
+            
+        </table>
+    </div>
+    </center>
+    <script>
+        function insert(num) {
+            document.form.view.value = document.form.view.value + num;
+        }
+        
+        function equals() {
+            var txt = document.form.view.value;
+            if (txt)
+                document.form.view.value = eval(txt);
+            else
+                document.form.view.value = 'ERROR'
+
+
+        }
+
+        function clean() {
+            document.form.view.value = "";
+        }
+
+        function back() {
+            var txt = document.form.view.value;
+            document.form.view.value = txt.substring(0, txt.length - 1);
+        }
+    </script>
+</body>
+
+</html>

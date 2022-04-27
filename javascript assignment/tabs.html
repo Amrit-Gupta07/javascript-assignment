@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Switcher</title>
+
+    <link rel="stylesheet" href="main.css" />
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Fira Sans', sans-serif;
+    }
+
+    body {
+        background-color: #EEE;
+    }
+
+    header {
+        background-color: #FFF;
+        box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    header nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-left: 142px;
+        padding-right: 142px;
+    }
+
+    header nav h1 {
+        font-size: 28px;
+        font-weight: 600;
+    }
+
+    header nav .tabs {
+        list-style-type: none;
+
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    header nav .tabs .tab {
+        display: block;
+    }
+
+    header nav .tabs .tab a[data-switcher] {
+        display: block;
+        padding: 15px 30px;
+        text-decoration: none;
+        color: black;
+        background-color: #00ACEE;
+        cursor: pointer;
+    }
+
+    header nav .tabs .tab:hover a[data-switcher] {
+        background-color: bisque;
+    }
+
+    header nav .tabs .tab.is-active a[data-switcher] {
+        background-color: bisque;
+        font-weight: 700;
+    }
+
+    main {
+        padding-left: 142px;
+        padding-right: 142px;
+    }
+
+    .pages {
+        margin-top: 100px;
+        padding: 50px 30px;
+        border-radius: 8px;
+        background-color: #FFF;
+        box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .pages .page {
+        display: none;
+    }
+
+    .pages .page.is-active {
+        display: block;
+    }
+</style>
+
+<body>
+    <header>
+        <nav>
+            <h1>Tab Switch</h1>
+            <ul class="tabs">
+                <li class="tab is-active">
+                    <a data-switcher data-tab="1">HTML</a>
+                </li>
+                <li class="tab">
+                    <a data-switcher data-tab="2">CSS</a>
+                </li>
+
+                <li class="tab">
+                    <a data-switcher data-tab="4">JAVASCRIPT</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section class="pages">
+            <div class="page is-active" data-page="1">
+                <h2>HTML</h2>
+                <p>
+                    The HyperText Markup Language or HTML is the standard markup language for documents designed to be
+                    displayed in a web browser. It can be assisted by technologies such as Cascading Style Sheets (CSS)
+                    and scripting languages such as JavaScript.
+
+                    Web browsers receive HTML documents from a web server or from local storage and render the documents
+                    into multimedia web pages. HTML describes the structure of a web page semantically and originally
+                    included cues for the appearance of the document.
+                </p>
+            </div>
+            <div class="page" data-page="2">
+                <h2>CSS</h2>
+                <p>
+                    The HyperText Markup Language or HTML is the standard markup language for documents designed to be
+                    displayed in a web browser. It can be assisted by technologies such as Cascading Style Sheets (CSS)
+                    and scripting languages such as JavaScript.
+
+                    Web browsers receive HTML documents from a web server or from local storage and render the documents
+                    into multimedia web pages. HTML describes the structure of a web page semantically and originally
+                    included cues for the appearance of the document.
+                </p>
+            </div>
+            <div class="page" data-page="3">
+                <h2>JAVASCRIPT</h2>
+                <p></p>
+            </div>
+            <div class="page" data-page="4">
+                <h2>JAVASCRIPT</h2>
+                <p>JavaScript is a high-level, often just-in-time compiled language that conforms to the ECMAScript
+                    standard.[14] It has dynamic typing, prototype-based object-orientation, and first-class functions.
+                    It is multi-paradigm, supporting event-driven, functional, and imperative programming styles. It has
+                    application programming interfaces (APIs) for working with text, dates, regular expressions,
+                    standard data structures, and the Document Object Model (DOM).
+
+                    The ECMAScript standard does not include any input/output (I/O), such as networking, storage, or
+                    graphics facilities. In practice, the web browser or other runtime system provides JavaScript APIs
+                    for I/O.</p>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        window.onload = () => {
+            const tab_switchers = document.querySelectorAll('[data-switcher]');
+
+            for (let i = 0; i < tab_switchers.length; i++) {
+                const tab_switcher = tab_switchers[i];
+                const page_id = tab_switcher.dataset.tab;
+
+                tab_switcher.addEventListener('click', () => {
+                    document.querySelector('.tabs .tab.is-active').classList.remove('is-active');
+                    tab_switcher.parentNode.classList.add('is-active');
+
+                    SwitchPage(page_id);
+                });
+            }
+        }
+
+        function SwitchPage(page_id) {
+            console.log(page_id);
+
+            const current_page = document.querySelector('.pages .page.is-active');
+            current_page.classList.remove('is-active');
+
+            const next_page = document.querySelector(`.pages .page[data-page="${page_id}"]`);
+            next_page.classList.add('is-active');
+        }
+    </script>
+
+</body>
+
+</html>
